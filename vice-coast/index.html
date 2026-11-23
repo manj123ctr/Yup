@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Pacifico&family=Oswald:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<!-- Loading -->
+<div id="loading" class="screen">
+  <div class="logo"><span class="logo-vice">Vice</span><span class="logo-coast">COAST</span></div>
+  <div class="load-bar"><div id="load-fill"></div></div>
+  <div id="load-text">Initializing…</div>
+</div>
+
+<!-- Title -->
+<div id="title" class="screen hidden">
+  <div class="title-inner">
+    <div class="logo big"><span class="logo-vice">Vice</span><span class="logo-coast">COAST</span></div>
+    <div class="tagline">An open-world crime story under neon skies</div>
+    <div class="menu-list" id="title-menu">
+      <button data-act="continue" id="btn-continue">Continue</button>
+      <button data-act="new">New Game</button>
+      <button data-act="load">Load Game</button>
+      <button data-act="settings">Settings</button>
+      <button data-act="controls">Controls</button>
+    </div>
+    <div class="title-foot">Click to capture the mouse while playing · Esc to pause</div>
+  </div>
+</div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="vignette"></div>
+  <div id="damage"></div>
+  <div id="bubbles"></div>
+  <div id="crosshair" class="hidden"><i></i><i></i><i></i><i></i></div>
+
+  <div id="top-right">
+    <div id="clock"><span id="time">12:00 PM</span><span id="weather-ico"></span></div>
+    <div id="money">$0</div>
+    <div id="money-delta"></div>
+    <div id="wanted"></div>
+    <div id="weapon"><div id="weapon-name">Fists</div><div id="weapon-ammo"></div></div>
+  </div>
+
+  <div id="feed"></div>
+  <div id="help" class="hidden"></div>
+
+  <div id="mm-wrap">
+    <canvas id="minimap" width="420" height="420"></canvas>
+    <div id="bars"><div class="bar"><div id="hp-fill"></div></div><div class="bar armor"><div id="ar-fill"></div></div></div>
+  </div>
+  <div id="area-name"><div id="area-zone"></div><div id="area-sub"></div></div>
+
+  <div id="speedo" class="hidden">
+    <canvas id="rpm" width="260" height="260"></canvas>
+    <div id="spd-num">0</div><div id="spd-unit">KM/H</div>
+    <div id="gear">N</div>
+    <div id="veh-name"></div>
+    <div class="bar veh"><div id="veh-hp"></div></div>
+  </div>
+  <div id="radio" class="hidden"><div id="radio-name"></div><div id="radio-tag"></div></div>
+
+  <div id="objective"></div>
+  <div id="subtitle"></div>
+  <div id="timer" class="hidden"></div>
+  <div id="banner" class="hidden"><div id="banner-top"></div><div id="banner-sub"></div></div>
+  <div id="fps" class="hidden"></div>
+
+  <!-- Phone -->
+  <div id="phone" class="hidden">
+    <div class="phone-frame">
+      <div class="phone-status"><span id="ph-time">12:00</span><span>VC Mobile ▂▄▆</span></div>
+      <div id="phone-screen"></div>
+      <div class="phone-home" id="phone-home-btn"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Overlays -->
+<div id="overlay" class="hidden"></div>
+<div id="fade" class="hidden"></div>
+<div id="big-msg" class="hidden"><div id="big-text"></div><div id="big-sub"></div></div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
