@@ -97,10 +97,12 @@ export class AudioEngine {
     this.heliLfo = lg;
     // crickets
     const cr = this.ctx.createOscillator(); cr.type = 'sine'; cr.frequency.value = 4700;
-    const cg = this.ctx.createGain(); cg.gain.value = 0;
+    // chirp modulator (0..1) feeds a separate output gain that stays at 0 unless it's a cricket-y night
+    const chirp = this.ctx.createGain(); chirp.gain.value = 0.5;
     const am = this.ctx.createOscillator(); am.frequency.value = 28; const amg = this.ctx.createGain(); amg.gain.value = 0.5;
-    am.connect(amg); amg.connect(cg.gain);
-    cr.connect(cg); cg.connect(this.sfx); cr.start(); am.start();
+    am.connect(amg); amg.connect(chirp.gain);
+    const cg = this.ctx.createGain(); cg.gain.value = 0;
+    cr.connect(chirp); chirp.connect(cg); cg.connect(this.sfx); cr.start(); am.start();
     this.cricket = cg;
     this.birdT = 2;
   }
